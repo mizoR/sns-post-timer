@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120824075121) do
+ActiveRecord::Schema.define(:version => 20120824125358) do
+
+  create_table "authentications", :force => true do |t|
+    t.string   "service_type", :null => false
+    t.string   "uid",          :null => false
+    t.string   "access_token", :null => false
+    t.datetime "expires_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "authentications", ["service_type", "access_token"], :name => "index_authentications_on_service_type_and_access_token", :unique => true
+  add_index "authentications", ["service_type", "uid"], :name => "index_authentications_on_service_type_and_uid", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "username",           :null => false
@@ -20,5 +32,7 @@ ActiveRecord::Schema.define(:version => 20120824075121) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
+
+  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
 end
