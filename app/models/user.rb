@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   attr_accessible :encrypted_password, :salt, :username, :password
   attr_accessor :password
 
+  has_many :authentications
+
   def password=(password)
     @password = password
     if @password

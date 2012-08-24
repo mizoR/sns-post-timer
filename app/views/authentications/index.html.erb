@@ -1,0 +1,8 @@
+<h1>Authentications#index</h1>
+<p>Find me in app/views/authentications/index.html.erb</p>
+<table class='table'>
+  <tr>
+    <th>Facebook</th>
+    <td><%= link_to 'Facebook Connect', authentications_path(service_type: :facebook), method: :post, class: 'btn' %></td>
+  </tr>
+</table>

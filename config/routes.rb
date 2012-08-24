@@ -6,6 +6,11 @@ Sns::Application.routes.draw do
 
   resource :users, only: %w(create destroy)
   resource :sessions, only: %w(create destroy)
+  resources :authentications, only: %w(index create destroy) do
+    collection do
+      get 'callback'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
