@@ -1,4 +1,9 @@
 Sns::Application.routes.draw do
+
+  root :to => 'welcome#index'
+
+  resources :users, only: %w(create destroy)
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
