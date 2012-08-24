@@ -39,12 +39,10 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
           <a class="brand" href="#">SNS</a>
+        <div class="nav-collapse collapse">
+        <p class="navbar-text pull-right"><%= link_to 'Sign out', sessions_path, class: 'navbar-link', method: :delete %></p>
+        </div>
         </div>
       </div>
     </div>

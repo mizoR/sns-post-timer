@@ -4,6 +4,13 @@
   <div class='span6'>
     <div class='well'>
       <h4>アカウントをお持ちの方</h4>
+      <%= form_tag sessions_path, method: :post do %>
+        <%= label_tag :username %>
+        <%= text_field_tag :username %>
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+        <%= submit_tag 'Sign in', class: 'btn' %>
+      <% end %>
     </div>
   </div>
   <div class='span6'>
@@ -14,7 +21,7 @@
         <%= form.text_field :username %>
         <%= form.label :password %>
         <%= form.password_field :password %>
-        <%= form.submit class: 'btn' %>
+        <%= form.submit 'Sign up', class: 'btn' %>
       <% end %>
     </div>
   </div>

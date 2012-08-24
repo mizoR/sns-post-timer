@@ -2,7 +2,10 @@ Sns::Application.routes.draw do
 
   root :to => 'welcome#index'
 
-  resources :users, only: %w(create destroy)
+  get "dashboard/index", as: 'dashboard'
+
+  resource :users, only: %w(create destroy)
+  resource :sessions, only: %w(create destroy)
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

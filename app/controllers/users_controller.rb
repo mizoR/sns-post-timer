@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   def create
     user = User.new(params[:user])
     if user.save
-      redirect_to :back, notice: 'user was created.'
+      session[:user_id] = user.id
+      redirect_to dashboard_path, notice: 'user was created.'
     else
       redirect_to :back, alert: 'username or password was wrong.'
     end
