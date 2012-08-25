@@ -1,22 +1,17 @@
 Sns::Application.routes.draw do
 
-  get "reserves/index"
-
-  get "reserves/new"
-
-  get "reserves/edit"
-
   root :to => 'welcome#index'
 
   get "dashboard/index", as: 'dashboard'
 
   resource :users, only: %w(create destroy)
   resource :sessions, only: %w(create destroy)
+  resources :feeds
   resources :authentications, only: %w(index create destroy) do
     collection do
       get 'callback'
     end
-    resources :reserves, as: 'reserves'
+    resources :reserves
   end
 
   # The priority is based upon order of creation:

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120824125358) do
+ActiveRecord::Schema.define(:version => 20120825052829) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id",      :null => false
@@ -25,6 +25,25 @@ ActiveRecord::Schema.define(:version => 20120824125358) do
 
   add_index "authentications", ["service_type", "access_token"], :name => "index_authentications_on_service_type_and_access_token", :unique => true
   add_index "authentications", ["service_type", "uid"], :name => "index_authentications_on_service_type_and_uid", :unique => true
+
+  create_table "feeds", :force => true do |t|
+    t.string   "message"
+    t.string   "picture"
+    t.string   "link"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "reserves", :force => true do |t|
+    t.integer  "authentication_id", :null => false
+    t.integer  "feed_id",           :null => false
+    t.datetime "reserved_at",       :null => false
+    t.datetime "posts_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username",           :null => false

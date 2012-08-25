@@ -1,0 +1,22 @@
+<h1>Feeds#index</h1>
+<p><%= link_to 'New', new_feed_path %></p>
+<table class='table table-bordered'>
+  <tr>
+    <th>Message</th>
+    <th>Name</th>
+    <th>Link</th>
+    <th>Picture</th>
+    <th>Description</th>
+    <th>Destroy</th>
+  </tr>
+  <% @feeds.each do |feed| %>
+    <tr>
+      <td><%= feed.message %></td>
+      <td><%= feed.name %></td>
+      <td><%= feed.link %></td>
+      <td><%= feed.picture %></td>
+      <td><%= feed.description %></td>
+      <td><%= link_to raw('<i class="icon-remove"></i>'), feed_path(feed), method: :delete %></td>
+    </tr>
+  <% end %>
+</table>

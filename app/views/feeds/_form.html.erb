@@ -1,0 +1,54 @@
+<%= form_for feed do |form| %>
+  <% if feed.errors.any? %>
+    <div class='alert alert-error'>
+      <ul>
+        <% item.errors.full_messages.each do |message| %><li><%= message %></li><% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <legend>Feed</legend>
+    <div class='control-group'>
+      <%= form.label :message %>
+      <div class='controls'>
+        <%= form.text_area :message, class: 'input-xxlarge', rows: 3 %>
+      </div>
+    </div>
+    <div class='control-group'>
+      <%= form.label :link %>
+      <div class='controls'>
+        <%= form.text_field :link, class: 'input-xxlarge' %>
+      </div>
+    </div>
+    <div class='control-group'>
+      <%= form.label :description %>
+      <div class='controls'>
+        <%= form.text_field :description, class: 'input-xxlarge', rows: 3 %>
+      </div>
+    </div>
+    <div class='control-group'>
+      <%= form.label :picture %>
+      <div class='controls'>
+        <%= form.text_field :picture, class: 'input-xxlarge' %>
+      </div>
+    </div>
+    <div class='control-group'>
+      <%= form.label :name %>
+      <div class='controls'>
+        <%= form.text_field :name, class: 'input-xxlarge' %>
+      </div>
+    </div>
+    <div class='control-group'>
+      <div class='controls'>
+        <% feed.reserves.each_with_index do |reserve, i| %>
+          <%= link_to raw(image_tag(reserve.authentication.profile_icon_url) + ' ' + reserve.authentication.service_type), '#', class: 'btn active', 'data-reserve_id' => i, onclick: %Q($("a[data-reserve_id='#{i}']").toggleClass('active'); $tmp=$("input[data-reserve_id='#{i}']"); $tmp.attr('disabled', !$tmp.attr('disabled')); return false;) %>
+          <%= fields_for 'reserves[]', reserve do |form| %>
+            <%= form.hidden_field :authentication_id, 'data-reserve_id' => i %>
+            <%= form.hidden_field :posts_at         , 'data-reserve_id' => i %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </fieldset>
+  <%= form.submit 'Create feed', class: 'btn' %>
+<% end %>
