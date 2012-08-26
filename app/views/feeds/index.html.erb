@@ -20,7 +20,7 @@
       <td><%= simple_format(feed.description) %></td>
       <td><%= link_to raw('<i class="icon-eye-open"></i>'), feed_path(feed) %></td>
       <td><%= link_to raw('<i class="icon-edit"></i>'), edit_feed_path(feed) %></td>
-      <td><%= link_to raw('<i class="icon-remove"></i>'), feed_path(feed), method: :delete %></td>
+      <td><%= link_to raw('<i class="icon-remove"></i>'), feed_path(feed), method: :delete, confirm: 'Are you sure?' %></td>
     </tr>
   <% end %>
 </table>
