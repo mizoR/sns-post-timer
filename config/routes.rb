@@ -1,5 +1,11 @@
 Sns::Application.routes.draw do
 
+  get "reserves/index"
+
+  get "reserves/new"
+
+  get "reserves/edit"
+
   root :to => 'welcome#index'
 
   get "dashboard/index", as: 'dashboard'

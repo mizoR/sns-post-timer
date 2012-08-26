@@ -4,6 +4,13 @@ class User < ActiveRecord::Base
 
   has_many :authentications, dependent: :destroy
 
+  def feeds
+    ids = self.authentications.inject([]) { |arr, authentication|
+      arr | authentication.feeds.map { |feed| feed.id }
+    }
+    Feed.where(id: ids)
+  end
+
   def password=(password)
     @password = password
     if @password
