@@ -4,6 +4,11 @@ class Authentication < ActiveRecord::Base
   has_many :reserves, dependent: :destroy
   has_many :feeds, through: :reserves
 
+  validates :access_token , presence: true, uniqueness: { scope: :service_type }
+  validates :access_secret, presence: true
+  validates :service_type , presence: true
+  validates :uid          , presence: true, uniqueness: { scope: :service_type }
+
   def profile_icon_url
     case self.service_type
     when 'facebook'
