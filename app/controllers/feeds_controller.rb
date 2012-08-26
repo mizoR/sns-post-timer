@@ -1,4 +1,4 @@
-class FeedsController < ApplicationController
+class FeedsController < UserBaseController
   def index
     @feeds = Feed.all
   end
@@ -47,15 +47,6 @@ class FeedsController < ApplicationController
       end
     end
 
-    @feed.reserves.each do |reserve|
-      if params[:reserves].keys.include(reserve.id.to_s)
-        authentication = current_user.auuthentications.find(reserve['authentication_id'])
-        reserve = @feed.reserves.find_by_id(reserve.id) || @feed.reserves.build
-        reserve.attributes = params[:reserves][reserve.id.to_s].merge(authentication_id: authentication.id, reserved_at: Time.now)
-      else
-        reserve.destroy
-      end
-    end
     if @feed.save
       redirect_to feed_path(@feed)
     else

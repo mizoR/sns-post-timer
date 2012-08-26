@@ -7,19 +7,21 @@
     <th>Link</th>
     <th>Picture</th>
     <th>Description</th>
+    <th>Show</th>
     <th>Edit</th>
     <th>Destroy</th>
   </tr>
   <% @feeds.each do |feed| %>
-    <tr>
+    <tr class='<%= 'error' if feed.reserves.empty? %>'>
       <td><%= feed.message %></td>
       <td><%= feed.name %></td>
       <td><%= feed.link %></td>
       <td><%= feed.picture %></td>
       <td><%= feed.description %></td>
+      <td><%= link_to raw('<i class="icon-eye-open"></i>'), feed_path(feed) %></td>
       <td><%= link_to raw('<i class="icon-edit"></i>'), edit_feed_path(feed) %></td>
       <td><%= link_to raw('<i class="icon-remove"></i>'), feed_path(feed), method: :delete %></td>
     </tr>
   <% end %>
 </table>
-<p><%= link_to 'Back', :back, class: 'btn' %></p>
+<p><%= link_to 'Back to Dashboard', dashboard_path, class: 'btn' %></p>

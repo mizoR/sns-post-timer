@@ -37,12 +37,14 @@ ActiveRecord::Schema.define(:version => 20120825052829) do
   end
 
   create_table "reserves", :force => true do |t|
-    t.integer  "authentication_id", :null => false
-    t.integer  "feed_id",           :null => false
-    t.datetime "reserved_at",       :null => false
-    t.datetime "posts_at",          :null => false
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.integer  "authentication_id",                :null => false
+    t.integer  "feed_id",                          :null => false
+    t.datetime "reserved_at",                      :null => false
+    t.datetime "posts_at",                         :null => false
+    t.datetime "posted_at"
+    t.integer  "tried_times",       :default => 0, :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   create_table "users", :force => true do |t|

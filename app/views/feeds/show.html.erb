@@ -1,6 +1,5 @@
 <h1>Feeds#show</h1>
 <p>Find me in app/views/feeds/show.html.erb</p>
-<p><%= link_to 'List', feeds_path %></p>
 <table class='table table-bordered'>
   <tr>
     <th>Message</th>
@@ -23,3 +22,5 @@
     <td><%= @feed.description %></td>
   </tr>
 </table>
+<%= link_to 'Edit', edit_feed_path(@feed), class: 'btn' %>
+<%= link_to 'Back to list', feeds_path, class: 'btn' %>
