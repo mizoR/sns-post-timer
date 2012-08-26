@@ -35,19 +35,9 @@ class FeedsController < UserBaseController
   end
 
   def update
-    @feed = current_user.feeds.find(params[:feed])
-    reserves_ = params[:reserves].keys.map { |key| key.to_i }
-    reserve_ids = @feed.reserves.map { |reserve| reserve.id } | reserves_
-    reserve_ids.each do |reserve_id|
-      if reserves_.include(reserve_id)
-        reserve = @feed.reserves.find_or_initialize_by_id(reserve_id)
-      else
-        idx = @feed.reserves.index { |reserve| reserve.id == reserve_id }
-        @feed.reserves[idx].destroy
-      end
-    end
+    @feed = current_user.feeds.find(params[:id])
 
-    if @feed.save
+    if @feed.update_attributes(params[:feed])
       redirect_to feed_path(@feed)
     else
       render action: 'new'

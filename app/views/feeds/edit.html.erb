@@ -1,3 +1,7 @@
 <h1>Feeds#edit</h1>
-<%= render partial: 'form', locals: { feed: @feed } %>
+<%= form_for @feed do |form| %>
+  <%= render partial: 'errors', locals: { errors: @feed.errors } %>
+  <%= render partial: 'form', locals: { form: form } %>
+  <%= form.submit 'Update feed', class: 'btn btn-primary' %>
+<% end %>
 <%= link_to 'Back to list', feeds_path, class: 'btn' %>

@@ -3,8 +3,8 @@
 <p><%= link_to 'Edit', edit_feed_path(@feed) %></p>
 <table class='table table-bordered'>
   <tr>
-    <th>Message</th>
-    <td><%= @feed.message %></td>
+    <th width='10%'>Message</th>
+    <td><%= simple_format(@feed.message) %></td>
   </tr>
   <tr>
     <th>Name</th>
@@ -12,26 +12,27 @@
   </tr>
   <tr>
     <th>Link</th>
-    <td><%= @feed.link %></td>
+    <td><%= link_to('link', @feed.link) if @feed.link.present? %></td>
   </tr>
   <tr>
     <th>Picture</th>
-    <td><%= @feed.picture %></td>
+    <td><%= image_tag(@feed.picture) if @feed.picture.present? %></td>
   </tr>
   <tr>
     <th>Description</th>
-    <td><%= @feed.description %></td>
+    <td><%= simple_format(@feed.description) %></td>
   </tr>
 </table>
 <table class='table table-bordered'>
   <tr>
-    <th>Icon</th>
-    <th>Service type</th>
+    <th width='10%'>Icon</th>
+    <th width='10%'>Service type</th>
     <th>Posts at</th>
     <th>Posted at</th>
-    <th>Tryed times</th>
-    <th>Edit</th>
-    <th>Destroy</th>
+    <th>Reserved at</th>
+    <th width='8%'>Tryed times</th>
+    <th width='8%'>Edit</th>
+    <th width='8%'>Destroy</th>
   </tr>
   <h2>Reserves</h2>
   <p><%= link_to 'New', new_feed_reserve_path(@feed) %></p>
@@ -40,6 +41,7 @@
     <td><%= reserve.authentication.service_type %></td>
     <td><%= reserve.posts_at %></td>
     <td><%= reserve.posted_at %></td>
+    <td><%= reserve.reserved_at %></td>
     <td><%= reserve.tried_times %></td>
     <td><%= link_to raw('<i class="icon-edit"></i>'), edit_feed_reserve_path(@feed, reserve) %></td>
     <td><%= link_to raw('<i class="icon-remove"></i>'), feed_reserve_path(@feed, reserve), method: :delete %></td>

@@ -2,22 +2,22 @@
 <p><%= link_to 'New', new_feed_path %></p>
 <table class='table table-bordered'>
   <tr>
-    <th>Message</th>
+    <th width='20%'>Message</th>
     <th>Name</th>
     <th>Link</th>
     <th>Picture</th>
-    <th>Description</th>
-    <th>Show</th>
-    <th>Edit</th>
-    <th>Destroy</th>
+    <th width='20%'>Description</th>
+    <th width='8%'>Show</th>
+    <th width='8%'>Edit</th>
+    <th width='8%'>Destroy</th>
   </tr>
   <% @feeds.each do |feed| %>
     <tr class='<%= 'error' if feed.reserves.empty? %>'>
-      <td><%= feed.message %></td>
+      <td><%= simple_format(feed.message) %></td>
       <td><%= feed.name %></td>
-      <td><%= feed.link %></td>
-      <td><%= feed.picture %></td>
-      <td><%= feed.description %></td>
+      <td><%= link_to('link', feed.link) if feed.link.present? %></td>
+      <td><%= image_tag(feed.picture) if feed.picture.present? %></td>
+      <td><%= simple_format(feed.description) %></td>
       <td><%= link_to raw('<i class="icon-eye-open"></i>'), feed_path(feed) %></td>
       <td><%= link_to raw('<i class="icon-edit"></i>'), edit_feed_path(feed) %></td>
       <td><%= link_to raw('<i class="icon-remove"></i>'), feed_path(feed), method: :delete %></td>

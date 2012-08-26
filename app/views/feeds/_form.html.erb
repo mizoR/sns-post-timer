@@ -1,11 +1,3 @@
-<%= form_for feed do |form| %>
-  <% if feed.errors.any? %>
-    <div class='alert alert-error'>
-      <ul>
-        <% feed.errors.full_messages.each do |message| %><li><%= message %></li><% end %>
-      </ul>
-    </div>
-  <% end %>
   <fieldset>
     <legend>Feed</legend>
     <div class='control-group'>
@@ -38,17 +30,5 @@
         <%= form.text_field :name, class: 'input-xxlarge' %>
       </div>
     </div>
-    <% feed.reserves.each_with_index do |reserve, i| %>
-      <div class='control-group'>
-        <div class='controls'>
-          <%= link_to raw(image_tag(reserve.authentication.profile_icon_url) + ' ' + reserve.authentication.service_type), '#', class: "btn active", 'data-btn_id' => i, onclick: %Q($("a[data-btn_id='#{i}']").toggleClass('active'); $tmp=$("select[data-btn_id='#{i}']"); $tmp.attr('disabled', !$tmp.attr('disabled')); return false;) %>
-          <%= fields_for 'reserves[]', reserve do |form| %>
-            <%= form.datetime_select :posts_at, { use_month_numbers: true, prefix: 'reserves[]' }, class: 'span1', 'data-btn_id' => i %>
-            <%= form.hidden_field :authentication_id %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
   </fieldset>
-  <%= form.submit 'Create feed', class: 'btn btn-primary' %>
-<% end %>
+
