@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20120825052829) do
     t.integer  "authentication_id", :null => false
     t.integer  "feed_id",           :null => false
     t.datetime "reserved_at",       :null => false
-    t.datetime "posts_at"
+    t.datetime "posts_at",          :null => false
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end

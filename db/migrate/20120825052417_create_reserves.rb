@@ -4,7 +4,7 @@ class CreateReserves < ActiveRecord::Migration
       t.integer :authentication_id, null: false
       t.integer :feed_id          , null: false
       t.datetime :reserved_at     , null: false
-      t.datetime :posts_at        , null: true , default: nil
+      t.datetime :posts_at        , null: false
 
       t.timestamps
     end

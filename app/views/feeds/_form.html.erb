@@ -23,7 +23,7 @@
     <div class='control-group'>
       <%= form.label :description %>
       <div class='controls'>
-        <%= form.text_field :description, class: 'input-xxlarge', rows: 3 %>
+        <%= form.text_area :description, class: 'input-xxlarge', rows: 3 %>
       </div>
     </div>
     <div class='control-group'>
@@ -41,14 +41,14 @@
     <div class='control-group'>
       <div class='controls'>
         <% feed.reserves.each_with_index do |reserve, i| %>
-          <%= link_to raw(image_tag(reserve.authentication.profile_icon_url) + ' ' + reserve.authentication.service_type), '#', class: 'btn active', 'data-reserve_id' => i, onclick: %Q($("a[data-reserve_id='#{i}']").toggleClass('active'); $tmp=$("input[data-reserve_id='#{i}']"); $tmp.attr('disabled', !$tmp.attr('disabled')); return false;) %>
+          <%= link_to raw(image_tag(reserve.authentication.profile_icon_url) + ' ' + reserve.authentication.service_type), '#', class: "btn #{'active' unless reserve.new_record?}", 'data-btn_id' => i, onclick: %Q($("a[data-btn_id='#{i}']").toggleClass('active'); $tmp=$("select[data-btn_id='#{i}']"); $tmp.attr('disabled', !$tmp.attr('disabled')); return false;) %>
           <%= fields_for 'reserves[]', reserve do |form| %>
-            <%= form.hidden_field :authentication_id, 'data-reserve_id' => i %>
-            <%= form.hidden_field :posts_at         , 'data-reserve_id' => i %>
+            <%= form.datetime_select :posts_at, { use_month_numbers: true, prefix: 'reserves[]' }, class: 'span1', 'data-btn_id' => i %>
+            <%= form.hidden_field :authentication_id %>
           <% end %>
         <% end %>
       </div>
     </div>
   </fieldset>
-  <%= form.submit 'Create feed', class: 'btn' %>
+  <%= form.submit 'Create feed', class: 'btn btn-primary' %>
 <% end %>

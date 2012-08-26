@@ -11,7 +11,6 @@ Sns::Application.routes.draw do
     collection do
       get 'callback'
     end
-    resources :reserves
   end
 
   # The priority is based upon order of creation:

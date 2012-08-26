@@ -1,12 +1,10 @@
 <h1>Authentications#index</h1>
-<p>Find me in app/views/authentications/index.html.erb</p>
 <table class='table'>
   <tr>
     <th>Icon</th>
     <th>Service type</th>
     <th>UID</th>
     <th>Expires at</th>
-    <th>Reserves</th>
     <th>Destroy</th>
   </tr>
   <% current_user.authentications.each do |authentication| %>
@@ -15,9 +13,9 @@
       <td><%= authentication.service_type %></td>
       <td><%= authentication.uid %></td>
       <td><%= authentication.expires_at %></td>
-      <td><%= link_to(raw("<i class='icon-align-justify'></i>"), authentication_reserves_path(authentication_id: authentication.id)) %></td>
       <td><%= link_to(raw("<i class='icon-remove'></i>"), authentication_path(id: authentication), method: :delete) %></td>
     </tr>
   <% end %>
 </table>
-<td><%= link_to 'Create Facebook Connection', authentications_path(service_type: :facebook), method: :post, class: 'btn' %></td>
+<p><%= link_to 'Create Facebook Connection', authentications_path(service_type: :facebook), method: :post, class: 'btn btn-primary' %></p>
+<p><%= link_to 'Back', :back, class: 'btn' %></p>
