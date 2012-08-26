@@ -32,6 +32,7 @@ class AuthenticationsController < UserBaseController
       if authentication.save
         redirect_to authentications_path
       else
+        logger.error authentication.errors.full_messages.join("\n")
         redirect_to authentications_path, alert: 'Connect Error.'
       end
     when 'twitter'
@@ -43,6 +44,7 @@ class AuthenticationsController < UserBaseController
       if authentication.save
         redirect_to authentications_path
       else
+        logger.error authentication.errors.full_messages.join("\n")
         redirect_to authentications_path, alert: 'Connect Error.'
       end
     end

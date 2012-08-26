@@ -5,7 +5,7 @@ class Authentication < ActiveRecord::Base
   has_many :feeds, through: :reserves
 
   validates :access_token , presence: true, uniqueness: { scope: :service_type }
-  validates :access_secret, presence: true
+  #validates :access_secret, presence: false # should be true when service_type == twitter
   validates :service_type , presence: true
   validates :uid          , presence: true, uniqueness: { scope: :service_type }
 
@@ -16,5 +16,9 @@ class Authentication < ActiveRecord::Base
     when 'twitter'
       "https://api.twitter.com/1/users/profile_image?user_id=#{self.uid}"
     end
+  end
+
+  def facebook
+    @facebook = FbGraph::User.me(self.access_token)
   end
 end
