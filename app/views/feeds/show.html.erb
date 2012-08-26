@@ -1,5 +1,5 @@
 <h1>Feeds#show</h1>
-<p>Find me in app/views/feeds/show.html.erb</p>
+<h2>Feed</h2>
 <table class='table table-bordered'>
   <tr>
     <th>Message</th>
@@ -22,5 +22,29 @@
     <td><%= @feed.description %></td>
   </tr>
 </table>
+<table class='table table-bordered'>
+  <tr>
+    <th>Icon</th>
+    <th>Posts at</th>
+    <th>Posted at</th>
+    <th>Tryed times</th>
+    <th>Edit</th>
+    <th>Destroy</th>
+  </tr>
+  <h2>Reserves</h2>
+  <p><%= link_to 'New', '#' %></p>
+  <% @feed.reserves.each do |reserve| %>
+    <td><%= image_tag(reserve.authentication.profile_icon_url) %></td>
+    <td><%= reserve.posts_at %></td>
+    <td><%= reserve.posted_at %></td>
+    <td><%= reserve.tried_times %></td>
+    <td><%= link_to raw('<i class="icon-edit"></i>'), '#' %></td>
+    <td><%= link_to raw('<i class="icon-remove"></i>'), '#', method: :delete %></td>
+  <tr>
+  </tr>
+  <% end %>
+</table>
+<p>
 <%= link_to 'Edit', edit_feed_path(@feed), class: 'btn' %>
 <%= link_to 'Back to list', feeds_path, class: 'btn' %>
+</p>

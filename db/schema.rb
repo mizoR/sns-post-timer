@@ -14,13 +14,14 @@
 ActiveRecord::Schema.define(:version => 20120825052829) do
 
   create_table "authentications", :force => true do |t|
-    t.integer  "user_id",      :null => false
-    t.string   "service_type", :null => false
-    t.string   "uid",          :null => false
-    t.string   "access_token", :null => false
+    t.integer  "user_id",       :null => false
+    t.string   "service_type",  :null => false
+    t.string   "uid",           :null => false
+    t.string   "access_token",  :null => false
+    t.string   "access_secret"
     t.datetime "expires_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "authentications", ["service_type", "access_token"], :name => "index_authentications_on_service_type_and_access_token", :unique => true

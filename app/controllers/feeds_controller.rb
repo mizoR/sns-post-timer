@@ -10,7 +10,7 @@ class FeedsController < UserBaseController
   def new
     @feed = Feed.new
     current_user.authentications.each do |authentication|
-      @feed.reserves.build(authentication_id: authentication.id)
+      @feed.reserves.build(authentication_id: authentication.id, posts_at: Time.now + 1.hour)
     end
   end
 

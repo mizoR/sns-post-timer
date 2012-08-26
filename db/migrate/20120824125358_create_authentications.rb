@@ -5,6 +5,7 @@ class CreateAuthentications < ActiveRecord::Migration
       t.string :service_type, null: false
       t.string :uid         , null: false
       t.string :access_token, null: false
+      t.string :access_secret,null: true
       t.datetime :expires_at
 
       t.timestamps

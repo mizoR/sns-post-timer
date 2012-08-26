@@ -5,6 +5,8 @@ gem 'sqlite3'
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
 gem 'fb_graph'
+gem 'twitter'
+gem 'oauth'
 gem 'rails_config'
 
 group :assets do

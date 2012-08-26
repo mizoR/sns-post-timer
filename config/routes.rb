@@ -6,7 +6,9 @@ Sns::Application.routes.draw do
 
   resource :users, only: %w(create destroy)
   resource :sessions, only: %w(create destroy)
-  resources :feeds
+  resources :feeds do
+    resources :reserves, only: %w(new create edit update destroy)
+  end
   resources :authentications, only: %w(index create destroy) do
     collection do
       get 'callback'

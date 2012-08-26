@@ -9,7 +9,7 @@
   </tr>
   <% current_user.authentications.each do |authentication| %>
     <tr>
-      <td><%= image_tag(authentication.profile_icon_url) %></td>
+      <td><%= image_tag(authentication.profile_icon_url, size: '48x48') %></td>
       <td><%= authentication.service_type %></td>
       <td><%= authentication.uid %></td>
       <td><%= authentication.expires_at %></td>
@@ -17,5 +17,8 @@
     </tr>
   <% end %>
 </table>
-<p><%= link_to 'Create Facebook Connection', authentications_path(service_type: :facebook), method: :post, class: 'btn btn-primary' %></p>
+<p>
+<%= link_to 'Create Facebook Connection', authentications_path(service_type: :facebook), method: :post, class: 'btn btn-primary' %>
+<%= link_to 'Create Twitter Connection', authentications_path(service_type: :twitter), method: :post, class: 'btn btn-primary' %>
+</p>
 <p><%= link_to 'Back to Dashboard', dashboard_path, class: 'btn' %></p>
