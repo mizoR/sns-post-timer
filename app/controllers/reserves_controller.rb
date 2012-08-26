@@ -18,7 +18,18 @@ class ReservesController < UserBaseController
   end
 
   def edit
-    @reserve = current_user.feeds.find(params[:feed_id]).reserves.find(params[:id])
+    @feed = current_user.feeds.find(params[:feed_id])
+    @reserve = @feed.reserves.find(params[:id])
+  end
+
+  def update
+    @feed = current_user.feeds.find(params[:feed_id])
+    @reserve = @feed.reserves.find(params[:id])
+    if @reserve.update_attributes(params[:reserve])
+      redirect_to feed_path(@feed)
+    else
+      render action: :edit
+    end
   end
 
   def destroy

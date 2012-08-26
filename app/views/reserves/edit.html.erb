@@ -1,2 +1,12 @@
 <h1>Reserves#edit</h1>
-<p>Find me in app/views/reserves/edit.html.erb</p>
+<%= form_for [@feed, @reserve] do |form| %>
+  <div class='control-group'>
+    <label><%= image_tag(@reserve.authentication.profile_icon_url) %> <%= @reserve.authentication.service_type %></label>
+    <div class='controls'>
+      <%= form.datetime_select :posts_at, { use_month_numbers: true }, class: 'span1' %>
+      <%= form.hidden_field :authentication_id %>
+    </div>
+  </div>
+  <%= form.submit 'Update reserves', class: 'btn btn-primary' %>
+<% end %>
+<p><%= link_to 'Back', :back, class: 'btn' %></p>

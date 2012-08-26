@@ -1,3 +1,6 @@
 <h1>Reserves#new</h1>
-<%= render partial: 'form', locals: { feed: @feed, reserves: @reserves } %>
+<%= form_for @feed, url: feed_reserves_path(@feed), method: :post do |form| %>
+  <%= render partial: 'form', locals: { feed: @feed, reserves: @reserves } %>
+  <%= form.submit 'Create reserves', class: 'btn btn-primary' %>
+<% end %>
 <p><%= link_to 'Back', :back, class: 'btn' %></p>
