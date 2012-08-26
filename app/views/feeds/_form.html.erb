@@ -2,7 +2,7 @@
   <% if feed.errors.any? %>
     <div class='alert alert-error'>
       <ul>
-        <% item.errors.full_messages.each do |message| %><li><%= message %></li><% end %>
+        <% feed.errors.full_messages.each do |message| %><li><%= message %></li><% end %>
       </ul>
     </div>
   <% end %>

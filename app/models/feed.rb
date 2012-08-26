@@ -3,4 +3,6 @@ class Feed < ActiveRecord::Base
 
   has_many :reserves, autosave: true
   has_many :authentications, through: :reserves
+
+  validates :message, presence: true
 end
