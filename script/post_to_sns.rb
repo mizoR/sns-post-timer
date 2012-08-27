@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-reserves = Reserve.where('posted_at IS NULL AND posts_at <= ?', Time.now)
+MAX_TRIED_TIMES = 3
+
+reserves = Reserve.where('posted_at IS NULL AND posts_at <= ? AND tried_times < ?', Time.now, MAX_TRIED_TIMES)
 
 reserves.each do |reserve|
   feed = reserve.feed
