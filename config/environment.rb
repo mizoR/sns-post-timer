@@ -6,5 +6,5 @@ ActiveSupport::Inflector.inflections do |inflect|
 end
 
 # Initialize the rails application
-Sns::Application.initialize!
+SnsPostTimer::Application.initialize!
 

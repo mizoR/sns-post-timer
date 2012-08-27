@@ -1,10 +1,4 @@
-Sns::Application.routes.draw do
-
-  get "reserves/index"
-
-  get "reserves/new"
-
-  get "reserves/edit"
+SnsPostTimer::Application.routes.draw do
 
   root :to => 'welcome#index'
 

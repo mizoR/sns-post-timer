@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Sns::Application.load_tasks
+SnsPostTimer::Application.load_tasks
