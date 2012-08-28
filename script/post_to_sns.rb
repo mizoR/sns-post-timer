@@ -36,9 +36,14 @@ reserves.each do |reserve|
         # NOTE 直接_media(TempFileインスタンス)を渡すと、
         # update_with_mediaでエラー(Method missing original_filename)
         # が発生したので、暫定的にFileインスタンスに置き換える
-        media = File.open(_media.path)
-        if Twitter.update_with_media(tweet, media)
+        type = _media.content_type.gsub(/image\//, '')
+        if _media.kind_of?(StringIO) && Twitter.update_with_media(tweet, { io: _media, type: type })
           reserve.update_attributes(posted_at: Time.now, tried_times: reserve.tried_times + 1)
+        else
+          media = _media.kind_of?(File) ? File.open(_media.path) : _media
+          if Twitter.update_with_media(tweet, media)
+            reserve.update_attributes(posted_at: Time.now, tried_times: reserve.tried_times + 1)
+          end
         end
       }
     else
