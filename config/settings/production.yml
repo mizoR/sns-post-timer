@@ -1,0 +1,10 @@
+web_services:
+  facebook:
+    access_token:  ENV['FB_KEY']
+    access_secret: ENV['FB_PASS']
+    redirect_uri:  ENV['FB_CB']
+  twitter:
+    access_token:  ENV['TW_KEY']
+    access_secret: ENV['TW_PASS']
+    redirect_uri:  ENV['TW_CB']
+
