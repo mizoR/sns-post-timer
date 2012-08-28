@@ -8,6 +8,7 @@ gem 'fb_graph'
 gem 'twitter'
 gem 'oauth'
 gem 'rails_config'
+gem 'nokogiri'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

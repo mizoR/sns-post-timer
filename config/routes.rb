@@ -4,6 +4,8 @@ SnsPostTimer::Application.routes.draw do
 
   get "dashboard/index", as: 'dashboard'
 
+  match 'bookmarklet' => 'feeds#bookmarklet', via: :get
+
   resource :users, only: %w(create destroy)
   resource :sessions, only: %w(create destroy)
   resources :feeds do

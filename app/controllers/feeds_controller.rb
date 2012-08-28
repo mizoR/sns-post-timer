@@ -1,4 +1,5 @@
 class FeedsController < UserBaseController
+
   def index
     @feeds = Feed.all
   end
@@ -48,5 +49,17 @@ class FeedsController < UserBaseController
     feed = Feed.find(params[:id])
     feed.destroy
     redirect_to feeds_path
+  end
+
+  def bookmarklet
+    @feed = if request && request.referer.present?
+              Feed.from_url(request.referer)
+            else
+              Feed.new(params[:feed])
+            end
+    current_user.authentications.each do |authentication|
+      @feed.reserves.build(authentication_id: authentication.id, posts_at: Time.now + 1.hour)
+    end
+    render action: :new
   end
 end
