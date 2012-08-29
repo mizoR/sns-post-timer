@@ -31,7 +31,9 @@ class FeedsController < UserBaseController
   def edit
     @feed = Feed.find(params[:id])
     current_user.authentications.each do |authentication|
-      @feed.reserves.build(authentication_id: authentication.id) unless @feed.authentications.include?(authentication)
+      if !@feed.authentications.include?(authentication)
+        @feed.reserves.build(authentication_id: authentication.id)
+      end
     end
   end
 
