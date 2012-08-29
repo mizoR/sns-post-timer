@@ -9,14 +9,13 @@ MAX_TRIED_TIMES = 3
 
 reserves = Reserve.where('posted_at IS NULL AND posts_at <= ? AND tried_times < ?', Time.now, MAX_TRIED_TIMES)
 reserves.each do |reserve|
+  reserve.update_column(:tried_times, reserve.tried_times + 1)
   feed = reserve.feed
   authentication = reserve.authentication
 
   puts "= feed          : #{feed.to_json}"
   puts "= reserve       : #{reserve.to_json}"
   puts "= authentication: #{authentication.to_json}"
-
-  reserve.update_column(:tried_times, reserve.tried_times + 1)
 
   case authentication.service_type
   when 'facebook'
