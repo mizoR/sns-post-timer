@@ -1,6 +1,5 @@
 <h1>Feeds#show</h1>
-<h2>Feed</h2>
-<p><%= link_to 'Edit', edit_feed_path(@feed) %></p>
+<p><%= link_to 'List', feeds_path %>&nbsp;&nbsp;&nbsp;<%= link_to 'Edit', edit_feed_path(@feed) %></p>
 <table class='table table-bordered'>
   <tr>
     <th width='10%'>Message</th>
@@ -12,7 +11,7 @@
   </tr>
   <tr>
     <th>Link</th>
-    <td><%= link_to('link', @feed.link) if @feed.link.present? %></td>
+    <td><%= link_to('link', @feed.link, target: :_blank) if @feed.link.present? %></td>
   </tr>
   <tr>
     <th>Picture</th>
@@ -35,7 +34,7 @@
     <th width='8%'>Destroy</th>
   </tr>
   <h2>Reserves</h2>
-  <p><%= link_to 'New', new_feed_reserve_path(@feed) %></p>
+  <p><%= link_to 'Add', new_feed_reserve_path(@feed) %></p>
   <% @feed.reserves.each do |reserve| %>
     <td><%= image_tag(reserve.authentication.profile_icon_url) %></td>
     <td><%= reserve.authentication.service_type %></td>
@@ -49,6 +48,3 @@
   </tr>
   <% end %>
 </table>
-<p>
-<%= link_to 'Back to list', feeds_path, class: 'btn' %>
-</p>

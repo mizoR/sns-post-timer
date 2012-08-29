@@ -43,7 +43,7 @@ class FeedsController < UserBaseController
     if @feed.update_attributes(params[:feed])
       redirect_to feed_path(@feed)
     else
-      render action: 'new'
+      render action: 'edit'
     end
   end
 
