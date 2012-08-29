@@ -45,12 +45,14 @@ reserves.each do |reserve|
         case media
         when StringIO
           type = media.content_type.gsub(/image\//, '')
-          Twitter.update_with_media(tweet, { io: _media, type: type })
-          reserve.update_column(:posted_at, Time.now)
+          if Twitter.update_with_media(tweet, { io: _media, type: type })
+            reserve.update_column(:posted_at, Time.now)
+          end
         when File, Tempfile
           puts media.path
-          Twitter.update_with_media(tweet, File.new(media.path))
-          reserve.update_column(:posted_at, Time.now)
+          if Twitter.update_with_media(tweet, File.new(media.path))
+            reserve.update_column(:posted_at, Time.now)
+          end
         else
           puts 'Media not found.'
         end
