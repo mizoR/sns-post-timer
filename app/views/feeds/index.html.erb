@@ -11,7 +11,7 @@
     <th width='8%'>Edit</th>
     <th width='8%'>Destroy</th>
   </tr>
-  <% @feeds.each do |feed| %>
+  <% current_user.feeds.each do |feed| %>
     <tr class='<%= 'error' if feed.reserves.empty? %>'>
       <td><%= simple_format(feed.message) %></td>
       <td><%= feed.name %></td>
