@@ -1,7 +1,7 @@
 class ReservesController < UserBaseController
   def new
     @feed = current_user.feeds.find(params[:feed_id])
-    authentications = current_user.authentications.select { |authentication| !@feed.authentications.include?(authentication) }
+    authentications = current_user.authentications
     @reserves = authentications.map { |authentication| @feed.reserves.build(authentication_id: authentication.id, posts_at: Time.now) }
   end
 
