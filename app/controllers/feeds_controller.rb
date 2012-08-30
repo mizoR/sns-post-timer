@@ -15,7 +15,7 @@ class FeedsController < UserBaseController
   end
 
   def create
-    @feed = Feed.new(params[:feed])
+    @feed = current_user.feeds.new(params[:feed])
     params[:reserves] && params[:reserves].each do |reserve|
       authentication = current_user.authentications.find(reserve['authentication_id'])
       @feed.reserves.build(reserve.merge(authentication_id: authentication.id, reserved_at: Time.now))
@@ -53,11 +53,11 @@ class FeedsController < UserBaseController
   end
 
   def bookmarklet
-    @feed = if request && request.referer.present?
-              Feed.from_url(request.referer)
-            else
-              Feed.new(params[:feed])
-            end
+    if !request || !request.referer.present?
+      redirect_to new_feeds_path
+    end
+
+    @feed = Feed.from_url(request.referer)
     current_user.authentications.each do |authentication|
       @feed.reserves.build(authentication_id: authentication.id, posts_at: Time.now + 1.hour)
     end

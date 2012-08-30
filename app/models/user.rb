@@ -3,13 +3,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
 
   has_many :authentications, dependent: :destroy
-
-  def feeds
-    ids = self.authentications.inject([]) { |arr, authentication|
-      arr | authentication.feeds.map { |feed| feed.id }
-    }
-    Feed.where(id: ids)
-  end
+  has_many :feeds,           dependent: :destroy
 
   def password=(password)
     @password = password

@@ -28,7 +28,8 @@ ActiveRecord::Schema.define(:version => 20120825052829) do
   add_index "authentications", ["service_type", "uid"], :name => "index_authentications_on_service_type_and_uid", :unique => true
 
   create_table "feeds", :force => true do |t|
-    t.string   "message"
+    t.integer  "user_id",     :null => false
+    t.string   "message",     :null => false
     t.string   "picture"
     t.string   "link"
     t.string   "name"
