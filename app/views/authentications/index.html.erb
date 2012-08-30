@@ -14,7 +14,7 @@
       <td><%= image_tag(authentication.profile_icon_url, size: '48x48') %></td>
       <td><%= authentication.service_type %></td>
       <td><%= authentication.uid %></td>
-      <td><%= link_to(raw("<i class='icon-remove'></i>"), authentication_path(id: authentication), method: :delete) %></td>
+      <td><%= link_to(raw("<i class='icon-remove'></i>"), authentication_path(id: authentication), method: :delete, confirm: 'Are you sure?') %></td>
     </tr>
   <% end %>
 </table>

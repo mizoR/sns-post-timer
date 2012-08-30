@@ -34,7 +34,7 @@
     <th width='8%'>Destroy</th>
   </tr>
   <h2>Reserves</h2>
-  <p><%= link_to 'Add', new_feed_reserve_path(@feed) %></p>
+  <p><%= link_to 'Add Reserves', new_feed_reserve_path(@feed) %></p>
   <% @feed.reserves.each do |reserve| %>
     <td><%= image_tag(reserve.authentication.profile_icon_url) %></td>
     <td><%= reserve.authentication.service_type %></td>
